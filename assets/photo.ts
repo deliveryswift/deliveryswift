@@ -8,7 +8,7 @@ import services from './photos/services.png'
 import about from './photos/about.png'
 import contact from './photos/contact.png'
 import close from './photos/close.png'
-import chat from './photos/chat.png'
+
 import home from './photos/home.png'
 import freight from './photos/freight.png'
 import parkage from './photos/parkage.png'
@@ -25,4 +25,4 @@ export const socialMediaPhotos = {
   youtube,
   instagram
 }
-export { heroImage, menu_open, services, about, phone, email, address, contact, close, chat, home, freight, refund, parkage, ecommerce, delivery  };
+export { heroImage, menu_open, services, about, phone, email, address, contact, close, home, freight, refund, parkage, ecommerce, delivery  };
