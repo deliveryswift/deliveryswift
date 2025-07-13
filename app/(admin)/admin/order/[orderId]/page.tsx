@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { EditOrder, OrderDetailsCTA } from "@/components/index";
+import { EditOrder, EditRefund, OrderDetailsCTA } from "@/components/index";
 import useOrderQuery from "@/hooks/useQuery";
 
 function OrderDetails({ params }: { params: Promise<{ orderId: string }> }) {
@@ -62,7 +62,7 @@ function OrderDetails({ params }: { params: Promise<{ orderId: string }> }) {
         </div>
         <div className="flex items-center gap-4">
           <p className="text-neutral-600">Country:</p>
-          <p>{data?.data[0].sendingCountry}</p>
+          <p>{data?.data[0].receivingCountry.toUpperCase()}</p>
         </div>
 
         <div className="flex items-center gap-4">
@@ -79,7 +79,7 @@ function OrderDetails({ params }: { params: Promise<{ orderId: string }> }) {
         </div>
         <div className="flex items-center gap-4">
           <p className="text-neutral-600">Sending Country:</p>
-          <p>{data?.data[0].sendingCountry}</p>
+          <p>{data?.data[0].sendingCountry.toUpperCase()}</p>
         </div>
         <div className="flex items-center gap-4">
           <p className="text-neutral-600">Status:</p>
@@ -90,8 +90,8 @@ function OrderDetails({ params }: { params: Promise<{ orderId: string }> }) {
            <div>
             <div className="text-green-800">
               {
-              data?.data[0].locations &&  data?.data[0]?.locations.map((location) => (
-                  <div key={location.place}>
+              data?.data[0].locations &&  data?.data[0]?.locations.map((location, index) => (
+                  <div key={index}>
                     <p>{location.place}</p>
                     <p className="text-xs">{new Date(location.time).toLocaleTimeString()}</p>
                     <div className="min-h-6 border w-1 bg-gray-700 rounded"></div>
@@ -106,6 +106,7 @@ function OrderDetails({ params }: { params: Promise<{ orderId: string }> }) {
         <OrderDetailsCTA orderId={orderId} status={data?.data[0].status} />
 
         <EditOrder orderId={orderId} />
+        <EditRefund orderId={orderId} />
       </section>
     </div>
   );

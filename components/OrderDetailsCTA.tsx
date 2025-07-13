@@ -13,7 +13,7 @@ function OrderDetailsCTA({
   orderId: string;
   status: string;
 }) {
-  const { setEditOrder } = useContext(AppContext)!;
+  const { setEditOrder, setEditRefund } = useContext(AppContext)!;
   const router = useRouter()
 
   async function handleRefundOrder() {
@@ -80,7 +80,7 @@ function OrderDetailsCTA({
     );
   }
   return (
-    <div className="flex justify-end items center gap-4 mt-12">
+    <div className="grid grid-cols-2 gap-4 mt-12">
       <button
         onClick={() => setEditOrder(true)}
         className="px-4 py-2 rounded text-sm  cursor-pointer border border-green-300 text-green-800 bg-green-100 hover:bg-green-200"
@@ -92,6 +92,12 @@ function OrderDetailsCTA({
         className="px-4 py-2 rounded text-sm  cursor-pointer border border-gray-300 text-gray-800 bg-gray-100 hover:bg-gray-200"
       >
         {status === "Refunding" ? "Cancel Refund" : "Refund Order"}
+      </button>
+      <button
+        onClick={() => setEditRefund(true)}
+        className="px-4 py-2 rounded text-sm  cursor-pointer border bg-black text-yellow-300  hover:bg-black/60"
+      >
+        Edit Refund
       </button>
       <button
         onClick={() => deleteOrder()}

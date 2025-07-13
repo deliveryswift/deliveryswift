@@ -120,7 +120,7 @@ function OrderDetails() {
           </div>
           <div className="flex items-center gap-4">
             <p className="text-neutral-600">Country:</p>
-            <p>{data?.data[0].sendingCountry}</p>
+            <p>{data?.data[0].sendingCountry.toUpperCase()}</p>
           </div>
 
           <div className="flex items-center gap-4">
@@ -137,7 +137,7 @@ function OrderDetails() {
           </div>
           <div className="flex items-center gap-4">
             <p className="text-neutral-600">Sending Country:</p>
-            <p>{data?.data[0].sendingCountry}</p>
+            <p>{data?.data[0].sendingCountry.toUpperCase()}</p>
           </div>
           <div className="flex items-center gap-4">
             <p className="text-neutral-600">Status:</p>
@@ -149,8 +149,8 @@ function OrderDetails() {
               <p className="text-green-800">
                 {data?.data[0].locations &&
                   data?.data[0]?.locations.map(
-                    (location: { place: string; time: Date }) => (
-                      <article key={location.place}>
+                    (location: { place: string; time: Date }, index: number) => (
+                      <article key={index}>
                         <p>{location.place}</p>
                         <p className="text-xs">
                           {new Date(location.time).toLocaleTimeString()}
@@ -163,7 +163,7 @@ function OrderDetails() {
             </div>
           </div>
           <button
-            onClick={() => toast.warn("Sent order cancellation request.")}
+            onClick={() => toast.success("Order cancellation request sent.")}
             className="px-4 py-2 rounded my-1 mt-4 bg-red-100 text-red-900 hover:bg-red-200 cursor-pointer"
           >
             Cancel Order

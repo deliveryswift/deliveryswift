@@ -13,6 +13,8 @@ interface ContextType {
   setAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   showEditOrder: boolean;
   setEditOrder: React.Dispatch<React.SetStateAction<boolean>>;
+  showEditRefund: boolean;
+  setEditRefund: React.Dispatch<React.SetStateAction<boolean>>;
   user: UserType | null;
   setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
 }
@@ -23,21 +25,21 @@ function AppProvider({ children }: { children: React.ReactNode }) {
   const [showSidebar, setSidebar] = useState(false);
   const [adminSidebar, setAdminSidebar] = useState(false);
   const [showEditOrder, setEditOrder] = useState(false);
+  const [showEditRefund, setEditRefund] = useState(false);
   const [user, setUser] = useState<UserType | null>(null);
 
- useEffect(() => {
-  
-  function seedUser(){
-    const userString = localStorage.getItem('user');
-    const storedUser = userString ? JSON.parse(userString) : null;
-    if(storedUser){
-      setUser(storedUser)
+  useEffect(() => {
+    function seedUser() {
+      const userString = localStorage.getItem("user");
+      const storedUser = userString ? JSON.parse(userString) : null;
+      if (storedUser) {
+        setUser(storedUser);
+      }
     }
-  }
 
-  seedUser()
-  return () =>{}
- },[])
+    seedUser();
+    return () => {};
+  }, []);
 
   const values = {
     showSidebar,
@@ -48,6 +50,8 @@ function AppProvider({ children }: { children: React.ReactNode }) {
     setEditOrder,
     user,
     setUser,
+    showEditRefund,
+    setEditRefund,
   };
   return <AppContext value={values}>{children}</AppContext>;
 }
